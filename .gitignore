@@ -240,6 +240,7 @@ tags
 [._]*.un~
 
 ### VisualStudioCode ###
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -261,5 +262,5 @@ tags
 # End of https://www.toptal.com/developers/gitignore/api/macos,git,python,visualstudiocode,vim
 
 ### gml personal docs ###
-sketch.txt
+gml_logbook.txt
 /temp/*
