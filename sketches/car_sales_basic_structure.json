@@ -1,0 +1,10 @@
+[{
+        "id":1,
+        "car": {
+                "car_make":"Ford",
+                "car_model":"Club Wagon",
+                "car_year":1997
+        },
+        "price":"$5179.39",
+        "total_sales":446
+}]
