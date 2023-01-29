@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 
+# 1. Calculate the car model with the most revenue
+
 # Libraries
 import json
 import locale
-import sys
+
 
 def load_data(filename):
     """Loads the contents of filename as a JSON file"""
     with open(filename) as json_file:
         data = json.load(json_file)
     return data
+
 
 def max_revenue(monthly_car_sales):
     """1. Calculate the car model with the most revenue"""
@@ -30,9 +33,11 @@ def max_revenue(monthly_car_sales):
     ]
     return summary
 
+
 def main():
     raw_data = load_data("car_sales.json")
     print(max_revenue(raw_data))
+
 
 if __name__ == "__main__":
     main()

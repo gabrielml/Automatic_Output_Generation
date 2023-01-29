@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 
-# 2. Calculate the most popular car_year across all car make/models
+# 3. Calculate the most popular car_year across all car make/models
 
 # Libraries
 import collections
 import functools
 import operator
 import json
-import locale
-import sys
+
 
 def load_data(filename):
   """Loads the contents of filename as JSON file"""
@@ -16,6 +15,7 @@ def load_data(filename):
     data = json.load(json_file)
 
     return data
+
 
 def best_year(raw_data):
   """3. Calculate the best sales year for all car models together"""
@@ -53,5 +53,6 @@ def main():
     year = best_year(data)
     print(year)
 
+
 if __name__ == "__main__":
-   main()
+  main()

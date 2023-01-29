@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
-# 1. Calculate the car model which had the most sales
+# 2. Calculate the car model which had the most sales
 
 # Libraries
 import json
 import locale
 import sys
+
 
 def load_data(filename):
 	"""Loads the contents of filename as a JSON file"""
@@ -13,8 +14,6 @@ def load_data(filename):
 		data = json.load(json_file)
 
 	return data
-
-
 
 
 def best_seller_car(data):
@@ -27,6 +26,7 @@ def best_seller_car(data):
 	]
 
 	return summary
+
 
 def main():
 	data = load_data("car_sales.json")
