@@ -26,8 +26,9 @@ def process_data(data):
   full_summary = []
 
   most_revenue = max_revenue(data)
+  most_sales = best_seller_car(data)
 
-  full_summary.append(most_revenue)
+  full_summary.extend([most_revenue, most_sales])
 
   # max_revenue = {"revenue": 0}
   # for item in data:
@@ -69,6 +70,16 @@ def max_revenue(monthly_car_sales):
     return summary
 
 
+def best_seller_car(data):
+	"""2. Calculate the car model which had the most sales"""
+	sorted_sales = sorted(data, key=lambda i: i["total_sales"], reverse=True)
+	best_seller = sorted_sales[0]
+
+	summary = [
+		"The {} had the most sales: {}".format(format_car(best_seller["car"]), best_seller["total_sales"])
+	]
+
+	return summary
 
 
 def cars_dict_to_table(car_data):
