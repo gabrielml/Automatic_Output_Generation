@@ -9,6 +9,14 @@ import sys
 import collections
 import functools
 import operator
+import reports
+
+# Variables
+# To generate PDF Report
+pdf_path = "tmp/cars.pdf"
+pdf_title = "Sales summary for last month"
+pdf_summary = ""
+
 
 
 def load_data(filename):
@@ -102,6 +110,13 @@ def selected_values(item):
 
   return new_item
 
+def formatted_summary(summary):
+  """4. Returns the car summary formatted to generate a PDF report"""
+  formatted = ""
+  for line in summary:
+    formatted += "".join([line[0], "<br/>"])
+
+  return formatted
 
 def cars_dict_to_table(car_data):
   """Turns the data in car_data into a list of lists."""
@@ -113,11 +128,13 @@ def cars_dict_to_table(car_data):
 
 def main(argv):
   """Process the JSON data and generate a full report out of it."""
+  # 4. Generate a PDF report
   data = load_data("car_sales.json")
   summary = process_data(data)
-  print(summary)
-  print(type(summary))
-  # TODO: turn this into a PDF report
+  pdf_summary = formatted_summary(summary)
+  table_info = cars_dict_to_table(data)
+
+  reports.generate(pdf_path, pdf_title, pdf_summary, table_info)
 
   # TODO: send the PDF report as an email attachment
 
