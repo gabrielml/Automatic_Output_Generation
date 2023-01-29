@@ -18,7 +18,7 @@ def load_data(filename):
     return data
 
 def best_year(raw_data):
-  """Calculate the best sales year for all car models together"""
+  """3. Calculate the best sales year for all car models together"""
   # Sales by year for every single car.
   # E.g. <Acura>{'2004': 100}, <Honda>{'2004': 50}
   filtered_data = list(map(selected_values, raw_data))
@@ -33,10 +33,14 @@ def best_year(raw_data):
   # Recover the Year with the best car sales
   best_sales_year = list(desc_sales.items())[0] # Complexity would be O(n)[O(ok)]
 
-  return best_sales_year
+  summary = [
+    "The most popular year was {} with {} sales.".format(best_sales_year[0], best_sales_year[1])
+  ]
+  return summary
 
 
 def selected_values(item):
+  """3.1. Returns a dictionary with the total of all cars sold in a given year"""
   key = str(item["car"]["car_year"])
   value = item["total_sales"]
   new_item = { key : value }

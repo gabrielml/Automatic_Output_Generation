@@ -18,11 +18,15 @@ def load_data(filename):
 
 
 def best_seller_car(data):
-	"""1. Calculate the car model which had the most sales"""
+	"""2. Calculate the car model which had the most sales"""
 	sorted_sales = sorted(data, key=lambda i: i["total_sales"], reverse=True)
 	best_seller = sorted_sales[0]
 
-	return best_seller
+	summary = [
+		"The {} had the most sales: {}".format(best_seller["car"], best_seller["total_sales"])
+	]
+
+	return summary
 
 def main():
 	data = load_data("car_sales.json")
