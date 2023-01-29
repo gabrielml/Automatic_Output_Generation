@@ -12,13 +12,6 @@ import operator
 import reports
 import emails
 
-# Variables
-# To generate PDF Report
-pdf_path = "tmp/cars.pdf"
-pdf_title = "Sales summary for last month"
-pdf_summary = ""
-
-
 
 def load_data(filename):
   """Loads the contents of filename as a JSON file."""
@@ -80,6 +73,7 @@ def best_seller_car(data):
 
 	return summary
 
+
 def best_year(raw_data):
   """3. Calculate the best sales year for all car models together"""
   # Sales by year for every single car.
@@ -114,28 +108,37 @@ def selected_values(item):
 def formatted_summary(summary, doc_type):
   """4.Returns the car summary formatted to generate a PDF or an Email Report"""
   formatted = ""
+
   if doc_type == "pdf":
     new_line = "<br/>"
   elif doc_type == "email":
     new_line = "\n"
+
   for line in summary:
     formatted += "".join([line[0], new_line])
 
   return formatted
 
+
 def cars_dict_to_table(car_data):
   """Turns the data in car_data into a list of lists."""
   table_data = [["ID", "Car", "Price", "Total Sales"]]
+
   for item in car_data:
     table_data.append([item["id"], format_car(item["car"]), item["price"], item["total_sales"]])
+
   return table_data
 
 
 def main(argv):
   """Process the JSON data and generate a full report out of it."""
-  # 4. Generate a PDF report
   data = load_data("car_sales.json")
   summary = process_data(data)
+  # 4. Variables to generate PDF Report
+  pdf_path = "tmp/cars.pdf"
+  pdf_title = "Sales summary for last month"
+  pdf_summary = ""
+  # Generate a PDF report
   pdf_summary = formatted_summary(summary, "pdf")
   table_info = cars_dict_to_table(data)
 
@@ -150,6 +153,7 @@ def main(argv):
   # Generate & Send the PDF report as an email attachment
   new_msg = emails.generate(sender, recipient, subject, email_body, attachment)
   emails.send(new_msg)
+
 
 if __name__ == "__main__":
   main(sys.argv)
