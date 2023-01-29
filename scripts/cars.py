@@ -136,7 +136,7 @@ def main(argv):
   # 4. Generate a PDF report
   data = load_data("car_sales.json")
   summary = process_data(data)
-  pdf_summary = formatted_summary(summary)
+  pdf_summary = formatted_summary(summary, "pdf")
   table_info = cars_dict_to_table(data)
 
   reports.generate(pdf_path, pdf_title, pdf_summary, table_info)
