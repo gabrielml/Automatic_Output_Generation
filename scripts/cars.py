@@ -10,6 +10,7 @@ import collections
 import functools
 import operator
 import reports
+import emails
 
 # Variables
 # To generate PDF Report
@@ -110,11 +111,15 @@ def selected_values(item):
 
   return new_item
 
-def formatted_summary(summary):
-  """4. Returns the car summary formatted to generate a PDF report"""
+def formatted_summary(summary, doc_type):
+  """4.Returns the car summary formatted to generate a PDF or an Email Report"""
   formatted = ""
+  if doc_type == "pdf":
+    new_line = "<br/>"
+  elif doc_type == "email":
+    new_line = "\n"
   for line in summary:
-    formatted += "".join([line[0], "<br/>"])
+    formatted += "".join([line[0], new_line])
 
   return formatted
 
@@ -136,8 +141,15 @@ def main(argv):
 
   reports.generate(pdf_path, pdf_title, pdf_summary, table_info)
 
-  # TODO: send the PDF report as an email attachment
-
+  # 5. Variables to an Email
+  sender = "automation@example.com"
+  recipient = "<user>@example.com"
+  subject = "Sales summary for last month"
+  email_body = formatted_summary(summary, "email")
+  attachment = "tmp/cars.pdf"
+  # Generate & Send the PDF report as an email attachment
+  new_msg = emails.generate(sender, recipient, subject, email_body, attachment)
+  emails.send(new_msg)
 
 if __name__ == "__main__":
   main(sys.argv)
